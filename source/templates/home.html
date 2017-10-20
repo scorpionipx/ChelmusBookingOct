@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends '_layouts/base.html' %}
+
+{% block headline %}<h1>Welcome to Chelmus Booking!</h1>{% endblock headline %}
+
+{% block content %}
+<p>Howdy{% if user.is_authenticated %} {{ user.username }}{% endif %}!</p>
+{% endblock %}

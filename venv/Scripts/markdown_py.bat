@@ -1,0 +1,1 @@
+@"D:\Documents\Python\ChelmusBookingOct\venv\Scripts\python.exe" "D:\Documents\Python\ChelmusBookingOct\venv\Scripts\markdown_py" %*

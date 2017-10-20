@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.views import generic
 
-# Create your views here.
+from braces import views
+
+from . import models
+
+
+class AdvertisementsHome(views.LoginRequiredMixin, generic.TemplateView):
+    template_name = 'Booking\home.html'
+
+
+
+

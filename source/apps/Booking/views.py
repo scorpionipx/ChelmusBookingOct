@@ -20,6 +20,8 @@ class AdvertisementCreateView(views.LoginRequiredMixin, generic.CreateView):
 
     model = models.Advertisement
 
+    object_title = 'anunt'
+
     def form_valid(self, form):
         self.object = form.save(commit=False)
 

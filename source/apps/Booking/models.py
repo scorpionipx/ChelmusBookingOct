@@ -23,16 +23,16 @@ class Advertisement(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, editable=True, related_name='advertisements',
                              verbose_name='author')
 
-    name = models.CharField(max_length=NAME_MAX_LENGTH, blank=False, null=False)
+    name = models.CharField(max_length=NAME_MAX_LENGTH, blank=False, null=False, verbose_name='Titlu')
     description = models.TextField(max_length=DESCRIPTION_MAX_LENGTH, blank=True,
-                                   verbose_name='description')
+                                   verbose_name='Descriere')
 
     date_created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='created')
 
-    site = models.URLField(blank=True, verbose_name='site')
-    mail = models.EmailField(blank=True, verbose_name='email')
-    phone = models.CharField(max_length=PHONE_MAX_LENGTH, blank=True, verbose_name='phone')
-    stars = models.IntegerField(blank=True, verbose_name='stars', default=0, editable=False)
+    site = models.URLField(blank=True, verbose_name='Site')
+    mail = models.EmailField(blank=True, verbose_name='Email')
+    phone = models.CharField(max_length=PHONE_MAX_LENGTH, blank=True, verbose_name='Telefon')
+    stars = models.IntegerField(blank=True, default=0, editable=False, verbose_name='Voturi')
 
     slug = models.SlugField(max_length=SLUG_MAX_LENGTH, blank=True, editable=False)
 

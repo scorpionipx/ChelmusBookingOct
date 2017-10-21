@@ -67,8 +67,9 @@ class Advertisement(models.Model):
         
         super(Advertisement, self).save(*args, **kwargs)
 
+    @models.permalink
     def get_absolute_url(self):
-        return reverse('home')
+        return 'advertisements:DetailAdvertisement', (), {'slug': self.slug}
 
 
 

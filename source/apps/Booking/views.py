@@ -30,5 +30,24 @@ class AdvertisementCreateView(views.LoginRequiredMixin, generic.CreateView):
         return super(AdvertisementCreateView, self).form_valid(form)
 
 
+class AdvertisementListView(generic.ListView):
+
+    template_name = r'Booking\advertisement_list.html'
+
+    model = models.Advertisement
+
+    def get_context_data(self, **kwargs):
+        context = super(AdvertisementListView, self).get_context_data(**kwargs)
+        #context['now'] = timezone.now()
+        return context
 
 
+class AdvertisementDetailView(generic.DetailView):
+
+    template_name = r'Booking\advertisement_detail.html'
+
+    model = models.Advertisement
+
+    def get_context_data(self, **kwargs):
+        context = super(AdvertisementDetailView, self).get_context_data(**kwargs)
+        return context

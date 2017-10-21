@@ -8,7 +8,9 @@ urlpatterns = [
 
     # Home
     url(r'^$', views.AdvertisementHome.as_view(), name='advertisements-home'),
-    url(r'^create_advertisement/', views.AdvertisementCreateView.as_view(), name='CreateAdvertisement'),
+    url(r'^create_advertisement/$', views.AdvertisementCreateView.as_view(), name='CreateAdvertisement'),
+    url(r'^list_advertisement/$', views.AdvertisementListView.as_view(), name='ListAdvertisement'),
+    url(r'^detail_advertisement/(?P<slug>[^\.]+)/$', views.AdvertisementDetailView.as_view(), name='DetailAdvertisement'),
 ]
 
 

@@ -1,0 +1,26 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">{{ object.name }}</div>
+
+  <!-- Table -->
+  <table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Options</th>
+        </tr>
+    <tr>
+        <td>{{ object.pk }}</td>
+        <td>{{ object.name }}</td>
+        <td>{{ object.description }}</td>
+
+    </tr>
+  </table>
+</div>
+
+{% endblock %}

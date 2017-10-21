@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 from django.template.defaultfilters import slugify
+from . import get_current_user
 
 NAME_MAX_LENGTH = 100
 DESCRIPTION_MAX_LENGTH = 1500
@@ -17,15 +18,16 @@ DEFAULT_SITE = 'not provided'
 
 class Advertisement(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='advertisements')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, editable=True, related_name='advertisements')
     name = models.CharField(max_length=NAME_MAX_LENGTH, blank=False, null=False)
-    description = models.TextField(max_length=DESCRIPTION_MAX_LENGTH, verbose_name='description')
-    site = models.URLField(verbose_name='site')
-    mail = models.EmailField(verbose_name='email')
-    phone = models.CharField(max_length=PHONE_MAX_LENGTH, verbose_name='phone')
-    stars = models.IntegerField(verbose_name='stars', default=0, editable=False)
+    description = models.TextField(max_length=DESCRIPTION_MAX_LENGTH, blank=True,
+                                   verbose_name='description')
+    site = models.URLField(blank=True, verbose_name='site')
+    mail = models.EmailField(blank=True, verbose_name='email')
+    phone = models.CharField(max_length=PHONE_MAX_LENGTH, blank=True, verbose_name='phone')
+    stars = models.IntegerField(blank=True, verbose_name='stars', default=0, editable=False)
 
-    slug = models.SlugField(max_length=SLUG_MAX_LENGTH)
+    slug = models.SlugField(max_length=SLUG_MAX_LENGTH, blank=True, editable=False)
 
     class Meta:
         unique_together = ('user', 'name')
@@ -40,6 +42,7 @@ class Advertisement(models.Model):
 
         if self.description is None or self.description == '':
             self.description = DEFAULT_DESCRIPTION
+            print(self.description)
 
         if self.mail is None or self.mail == '':
             self.mail = DEFAULT_MAIL
@@ -50,7 +53,11 @@ class Advertisement(models.Model):
         if self.phone is None or self.phone == '':
             self.phone = DEFAULT_PHONE
 
-        self.slug = slugify(str(self.user) + '-' + str(self.name))
+        current_request_user = get_current_user.get_thread_user()
+        self.user = current_request_user.user
+        self.slug = slugify(str(self.user.username) + '-' + str(self.name))
+        
+        super(Advertisement, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('home')

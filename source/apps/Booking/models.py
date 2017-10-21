@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -18,10 +20,15 @@ DEFAULT_SITE = 'not provided'
 
 class Advertisement(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, editable=True, related_name='advertisements')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, editable=True, related_name='advertisements',
+                             verbose_name='author')
+
     name = models.CharField(max_length=NAME_MAX_LENGTH, blank=False, null=False)
     description = models.TextField(max_length=DESCRIPTION_MAX_LENGTH, blank=True,
                                    verbose_name='description')
+
+    date_created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='created')
+
     site = models.URLField(blank=True, verbose_name='site')
     mail = models.EmailField(blank=True, verbose_name='email')
     phone = models.CharField(max_length=PHONE_MAX_LENGTH, blank=True, verbose_name='phone')
@@ -31,6 +38,7 @@ class Advertisement(models.Model):
 
     class Meta:
         unique_together = ('user', 'name')
+        ordering = ('date_created', )
 
     def __unicode__(self):
         return str(self.name)

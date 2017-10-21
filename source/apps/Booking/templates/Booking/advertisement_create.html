@@ -1,0 +1,12 @@
+{% extends '_layouts\base.html' %}
+{% load crispy_forms_tags %}
+
+{% block headline %}
+     <ul>
+        <li> The {{ view.object_title }}'s name shall be unique and it can not be empty</li>
+    </ul>
+{% endblock headline %}
+
+{% block content %}
+    {% crispy form %}
+{% endblock content %}

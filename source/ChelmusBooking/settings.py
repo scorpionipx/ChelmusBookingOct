@@ -142,3 +142,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'chelmus.booking@gmail.com'
 EMAIL_HOST_PASSWORD = 'Qwerty12#'
 EMAIL_USE_TLS = True
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = "media/"
+

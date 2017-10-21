@@ -24,7 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Chelmus Booking</a>
+          <a class="navbar-brand" href="{% url 'home' %}">Chelmus Booking</a>
         </div>
         <div class="navbar-collapse collapse">
             {% if not user.is_authenticated %}

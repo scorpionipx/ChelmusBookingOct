@@ -11,7 +11,8 @@ class AdvertisementForm(forms.ModelForm):
         Class used to manage HTML form for advertisement creation or updating
     """
     class Meta:
-        fields = ('name', 'description', 'site', 'mail', 'phone')
+        fields = ('name', 'description', 'main_image', 'category', 'wifi', 'parking', 'children_playground',
+                  'swimming_pool', 'launch', 'spa', 'price', 'site', 'mail', 'phone')
         model = models.Advertisement
 
     def __init__(self, *args, **kwargs):
@@ -20,6 +21,15 @@ class AdvertisementForm(forms.ModelForm):
         self.helper.layout = Layout(
             'name',
             'description',
+            'main_image',
+            'category',
+            'wifi',
+            'parking',
+            'children_playground',
+            'swimming_pool',
+            'launch',
+            'spa',
+            'price',
             'site',
             'mail',
             'phone',

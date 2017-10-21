@@ -134,3 +134,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# SMPT settings
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'chelmus.booking@gmail.com'
+EMAIL_HOST_PASSWORD = 'Qwerty12#'
+EMAIL_USE_TLS = True

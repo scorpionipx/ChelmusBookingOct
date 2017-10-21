@@ -20,7 +20,10 @@ class SignUpView(generic.CreateView, views.AnonymousRequiredMixin, views.FormVal
     form_valid_message = "Inregistrare reusita!"
     form_class = RegistrationForm
     model = User
+
     template_name = 'accounts/signup.html'
+
+    success_url = reverse_lazy('login')
 
 
 class LoginView(generic.FormView, views.LoginRequiredMixin):

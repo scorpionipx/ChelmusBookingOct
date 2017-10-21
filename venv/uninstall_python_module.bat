@@ -1,5 +1,5 @@
 @echo off
-color b
+color c
 cls
 
 Scripts\python -V
@@ -11,7 +11,7 @@ GOTO HELP
 echo Enter module's name!
 set /P module_name=module: 
 
-if %module_name% == ex GOTO EXIT_MODULE_INSTALLER
+if %module_name% == ex GOTO EXIT_MODULE_UNINSTALLER
 
 if %module_name% == h GOTO HELP
 if %module_name% == help GOTO HELP

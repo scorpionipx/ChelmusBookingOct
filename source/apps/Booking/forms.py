@@ -11,7 +11,7 @@ class AdvertisementForm(forms.ModelForm):
         Class used to manage HTML form for advertisement creation or updating
     """
     class Meta:
-        fields = ('name', 'description', 'main_image', 'category', 'wifi', 'parking', 'children_playground',
+        fields = ('name', 'description', 'main_image', 'county', 'city', 'category', 'wifi', 'parking', 'children_playground',
                   'swimming_pool', 'launch', 'spa', 'price', 'site', 'mail', 'phone')
         model = models.Advertisement
 
@@ -22,6 +22,8 @@ class AdvertisementForm(forms.ModelForm):
             'name',
             'description',
             'main_image',
+            'county',
+            'city',
             'category',
             'wifi',
             'parking',

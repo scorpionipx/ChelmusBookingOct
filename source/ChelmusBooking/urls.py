@@ -1,5 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 from .views import HomePageView
 from .views import SignUpView
@@ -20,4 +22,5 @@ urlpatterns = [
 
     # Booking App
     url(r'^advertisements/', include('apps.Booking.urls', namespace='advertisements'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

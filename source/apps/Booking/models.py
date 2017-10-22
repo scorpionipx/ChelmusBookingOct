@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 from django.db import models
 
 from django.template.defaultfilters import slugify
@@ -40,6 +39,20 @@ class Advertisement(models.Model):
     category = models.CharField(max_length=3, choices=CATEGORY_CHOICES, default=CATEGORY_CHOICES[0],
                                 verbose_name='Categorie', help_text='Tipul anuntului<br><br><h3>Servicii oferite</h3>')
 
+    city = models.CharField(max_length=100, blank=False, null=False, verbose_name='Localitate')
+
+    COUNTY_CHOICES = (('AB', 'Alba'), ('AG', 'Arges'), ('AR', 'Arad'), ('B', 'Bucuresti'), ('BC', 'Bacau'),
+                      ('BH', 'Bihor'), ('BN', 'Bistrita-Nasaud'), ('BR', 'Braila'), ('BT', 'Botosani'),
+                      ('BV', 'Brasov'), ('BZ', 'Buzau'), ('CJ', 'Cluj'), ('CL', 'Calarasi'), ('CS', 'Caras-Severin'),
+                      ('CT', 'Constanta'), ('CV', 'Covasna'), ('DB', 'Dambovita'), ('DJ', 'Dolj'), ('GJ', 'Gorj'),
+                      ('GL', 'Galati'), ('GR', 'Giurgiu'), ('HD', 'Hunedoara'), ('HR', 'Harghita'), ('IF', 'Ilfov'),
+                      ('IL', 'Ialomita'), ('IS', 'Iasi'), ('MH', 'Mehedinti'), ('MM', 'Maramures'), ('MS', 'Mures'),
+                      ('NT', 'Neamt'), ('OT', 'Olt'), ('PH', 'Prahova'), ('SB', 'Sibiu'), ('SJ', 'Salaj'),
+                      ('SM', 'Satu Mare'), ('SV', 'Suceava'), ('TL', 'Tulcea'), ('TM', 'Timis'), ('TR', 'Teleorman'),
+                      ('VL', 'Valcea'), ('VN', 'Vrancea'), ('VS', 'Vaslui'))
+    county = models.CharField(max_length=2, choices=COUNTY_CHOICES, default=COUNTY_CHOICES[0], blank=False, null=False,
+                              verbose_name='Judet')
+
     price = models.IntegerField(default=0, verbose_name='Pret', help_text='Pretul in euro')
 
     wifi = models.BooleanField(default=False, verbose_name='Wi-Fi')
@@ -53,7 +66,7 @@ class Advertisement(models.Model):
 
     site = models.URLField(blank=True, verbose_name='Site', help_text='Adresa web a proprietatii')
     mail = models.EmailField(blank=True, verbose_name='Email', help_text='Adresa de email')
-    phone = models.CharField(max_length=PHONE_MAX_LENGTH, blank=True, verbose_name='Telefon',
+    phone = models.CharField(max_length=PHONE_MAX_LENGTH, verbose_name='Telefon',
                              help_text='Numarul de telefon')
     stars = models.IntegerField(blank=True, default=0, editable=False, verbose_name='Voturi')
 

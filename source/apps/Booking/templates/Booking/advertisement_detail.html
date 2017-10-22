@@ -1,5 +1,7 @@
 {% extends '_layouts/base.html' %}
 
+{% load static %}
+
 {% block headline %}
 {% endblock headline %}
 
@@ -7,10 +9,13 @@
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">{{ object.name }}</div>
+  <div class="panel-heading">{{ object.name }}   {{ MEDIA_URL }}</div>
 
   <!-- Table -->
   <table class="table">
+      <tr>
+          <img src="{{ object.main_image.url }}" alt="Fara imagine de prezentare">
+      </tr>
     <tr>
         <th>ID</th>
         <th>Name</th>

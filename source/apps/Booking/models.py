@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from django.template.defaultfilters import slugify
 from . import get_current_user
@@ -25,10 +26,11 @@ class Advertisement(models.Model):
     name = models.CharField(max_length=NAME_MAX_LENGTH, blank=False, null=False, verbose_name='Titlu',
                             help_text='Titlul anuntului <br>Titlul anuntului este primul lucru observat de client. <br>'
                                       'Acesta ar trebui sa contina informatii concrete si atragatare.<br>Nu se accepta'
-                                      ' nume nule (goale)!<br>Nu puteti avea mai multe anunturi cu acelasi nume!')
+                                      ' nume nule (goale)!')
 
     main_image = models.ImageField(blank=True, null=True, default=None, verbose_name='Imaginea de profil',
-                                   upload_to='profiles/%Y/%m/%d', help_text='Imaginea de prezentare')
+                                   upload_to='profiles/%Y/%m/%d',
+                                   help_text='Imaginea de prezentare<br><br><br>Galerie foto')
 
     description = models.TextField(max_length=DESCRIPTION_MAX_LENGTH, blank=True,
                                    verbose_name='Descriere', help_text='Descriere amanuntita a anuntului')
@@ -68,7 +70,19 @@ class Advertisement(models.Model):
     mail = models.EmailField(blank=True, verbose_name='Email', help_text='Adresa de email')
     phone = models.CharField(max_length=PHONE_MAX_LENGTH, verbose_name='Telefon',
                              help_text='Numarul de telefon')
-    stars = models.IntegerField(blank=True, default=0, editable=False, verbose_name='Voturi')
+    stars = models.IntegerField(blank=False, default=1, validators=[MaxValueValidator(5), MinValueValidator(1)],
+                                editable=True, verbose_name='Stele')
+
+    image_0 = models.ImageField(blank=True, null=True, default=None, verbose_name='Imaginea de galerie 1',
+                                   upload_to='profiles/%Y/%m/%d')
+    image_1 = models.ImageField(blank=True, null=True, default=None, verbose_name='Imaginea de galerie 2',
+                                   upload_to='profiles/%Y/%m/%d')
+    image_2 = models.ImageField(blank=True, null=True, default=None, verbose_name='Imaginea de galerie 3',
+                                   upload_to='profiles/%Y/%m/%d')
+    image_3 = models.ImageField(blank=True, null=True, default=None, verbose_name='Imaginea de galerie 4',
+                                   upload_to='profiles/%Y/%m/%d')
+    image_4 = models.ImageField(blank=True, null=True, default=None, verbose_name='Imaginea de galerie 5',
+                                   upload_to='galery/%Y/%m/%d')
 
     slug = models.SlugField(max_length=SLUG_MAX_LENGTH, blank=True, editable=False)
 

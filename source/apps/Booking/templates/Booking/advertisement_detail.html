@@ -9,10 +9,35 @@
 
 
 {% block content %}
-
+<style>
+.stars_{
+    float:top
+    margin: 0 0 10px 10px;
+    }
+</style>
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">{{ object.name }}</div>
+  <p class="panel-heading">
+      {% if object.stars == 1 %}
+         <img class="stars_" src="/media/1_stars.jpg" alt="Fara stele" height="20" width="100" align="left">
+      {% endif %}
+      {% if object.stars == 2 %}
+         <img class="stars_" src="/media/2_stars.jpg" alt="Fara stele" height="20" width="100" align="left">
+      {% endif %}
+      {% if object.stars == 3 %}
+         <img class="stars_" src="/media/3_stars.jpg" alt="Fara stele" height="20" width="100" align="left">
+      {% endif %}
+      {% if object.stars == 4 %}
+         <img class="stars_" src="/media/4_stars.jpg" alt="Fara stele" height="20" width="100" align="left">
+      {% endif %}
+      {% if object.stars == 5 %}
+         <img class="stars_" src="/media/5_stars.jpg" alt="Fara stele" height="20" width="100" align="left">
+      {% endif %}
+      <br>
+      <br>
+      <b>{{ object.name }}</b>
+  </p>
+  </div>
 
   <!-- Table -->
     <table class="table">
@@ -55,19 +80,72 @@
                 <ul class="list-unstyled">
                     <p style="font-size:15px;"><b>Facilitati oferite</b></p>
                     {% if object.wifi %}
-                    <li><p><span class="glyphicon glyphicon-signal"></span> Wi-Fi</p></li>
+                    <li><p><span>{% bootstrap_icon "signal" %}</span> Wi-Fi</p></li>
                     {% endif %}
 
                     {% if object.launch %}
-                    <li><p><span class="glyphicon glyphicon-cutlery"></span> Mic dejun</p></li>
+                    <li><p><span>{% bootstrap_icon "cutlery" %}</span> Mic dejun</p></li>
                     {% endif %}
 
                     {% if object.children_playground %}
-                    <li><p><span>{% bootstrap_icon "music" %}</span> Loc de joaca pentru copii</p></li>
+                    <li><p><span>{% bootstrap_icon "tent" %}</span> Loc de joaca pentru copii</p></li>
+                    {% endif %}
+
+                    {% if object.parking %}
+                    <li><p><span>{% bootstrap_icon "road" %}</span> Parcare</p></li>
+                    {% endif %}
+
+                    {% if object.swimming_pool %}
+                    <li><p><span>{% bootstrap_icon "star" %}</span> Piscina</p></li>
                     {% endif %}
 
                     {% if object.spa %}
-                    <li><p><span class="glyphicon glyphicon-sunglasses"></span> SPA</p></li>
+                    <li><p><span>{% bootstrap_icon "sunglasses" %}</span> SPA</p></li>
+                    {% endif %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="middle">
+                <p style="font-size:25px;"><b>Galerie foto</b></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="middle">
+                <ul class="list-unstyled">
+                    {% if object.image_0 %}
+                    <li>
+                        <img src="{{ object.image_0.url }}" alt="Fara imagine de galerie" height="400" width="700" align="middle">
+                    </li>
+                    <br>
+                    {% endif %}
+
+                    {% if object.image_1 %}
+                    <li>
+                        <img src="{{ object.image_1.url }}" alt="Fara imagine de galerie" height="400" width="700" align="middle">
+                    </li>
+                    <br>
+                    {% endif %}
+
+                    {% if object.image_2 %}
+                    <li>
+                        <img src="{{ object.image_2.url }}" alt="Fara imagine de galerie" height="400" width="700" align="middle">
+                    </li>
+                    <br>
+                    {% endif %}
+
+                    {% if object.image_3 %}
+                    <li>
+                        <img src="{{ object.image_3.url }}" alt="Fara imagine de galerie" height="400" width="700" align="middle">
+                    </li>
+                    <br>
+                    {% endif %}
+
+                    {% if object.image_4 %}
+                    <li>
+                        <img src="{{ object.image_4.url }}" alt="Fara imagine de galerie" height="400" width="700" align="middle">
+                    </li>
+                    <br>
                     {% endif %}
                 </ul>
             </td>

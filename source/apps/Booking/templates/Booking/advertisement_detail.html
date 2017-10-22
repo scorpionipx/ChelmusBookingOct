@@ -1,34 +1,78 @@
 {% extends '_layouts/base.html' %}
 
 {% load static %}
+{% load bootstrap3 %}
 
 {% block headline %}
+    <h3>{{ object.name }} </h3>
 {% endblock headline %}
+
 
 {% block content %}
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">{{ object.name }}   {{ MEDIA_URL }}</div>
+  <div class="panel-heading">{{ object.name }}</div>
 
   <!-- Table -->
-  <table class="table">
-      <tr>
-          <img src="{{ object.main_image.url }}" alt="Fara imagine de prezentare">
-      </tr>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Options</th>
+    <table class="table">
+        <tr>
+            <td align="left">
+                <img src="{{ object.main_image.url }}" alt="Fara imagine de prezentare" height="400" width="700" align="middle">
+            </td>
+            <td align="middle">
+                <ul class="list-unstyled">
+                    <li>
+                        <img src="/media/chelmus_booking_logo.jpg" alt="Fara logo" height="130" width="380" align="middle">
+                    </li>
+                    <li>
+                        <br>
+                        <p style="font-size:50px;"><b>{{ object.price }}  €</b></p>
+                    </li>
+                    <li>
+                        <p class="btn btn-primary navbar-btn" style="width:200px"><span class="glyphicon glyphicon-phone-alt"></span> {{ object.phone }}</p>
+                    </li>
+                    <li>
+                        <p class="btn btn-warning navbar-btn" style="width:200px"><span class="glyphicon glyphicon-map-marker"></span> {{ object.get_county_display }}, {{ object.city }} </p>
+                    </li>
+                </ul>
+            </td>
         </tr>
-    <tr>
-        <td>{{ object.pk }}</td>
-        <td>{{ object.name }}</td>
-        <td>{{ object.description }}</td>
+        <tr>
+            <td>
+                <p style="font-size:25px;">Oferit de {{ object.user.username }}</p>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p style="font-size:15px;">{{ object.description }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul class="list-unstyled">
+                    <p style="font-size:15px;"><b>Facilitati oferite</b></p>
+                    {% if object.wifi %}
+                    <li><p><span class="glyphicon glyphicon-signal"></span> Wi-Fi</p></li>
+                    {% endif %}
 
-    </tr>
-  </table>
+                    {% if object.launch %}
+                    <li><p><span class="glyphicon glyphicon-cutlery"></span> Mic dejun</p></li>
+                    {% endif %}
+
+                    {% if object.children_playground %}
+                    <li><p><span>{% bootstrap_icon "music" %}</span> Loc de joaca pentru copii</p></li>
+                    {% endif %}
+
+                    {% if object.spa %}
+                    <li><p><span class="glyphicon glyphicon-sunglasses"></span> SPA</p></li>
+                    {% endif %}
+                </ul>
+            </td>
+        </tr>
+    </table>
 </div>
 
 {% endblock %}

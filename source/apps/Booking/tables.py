@@ -26,6 +26,7 @@ class AdvertisementTable(tables.Table):
     city = tables.Column(verbose_name='Oras')
     county = tables.Column(verbose_name='Judet')
     price = tables.Column(verbose_name="Pret (€)")
+    date_created = tables.Column(verbose_name="Data crearii")
 
     class Meta:
         # table's model
@@ -46,6 +47,7 @@ class AdvertisementTable(tables.Table):
             'stars',
             'city',
             'county',
+            'date_created',
         ]
 
         # custom named fields to hide

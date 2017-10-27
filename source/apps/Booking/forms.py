@@ -12,8 +12,8 @@ class AdvertisementForm(forms.ModelForm):
     """
     class Meta:
         fields = ('name', 'description', 'main_image', 'image_0', 'image_1', 'image_2', 'image_3', 'image_4', 'county',
-                  'city', 'category', 'wifi', 'parking', 'children_playground', 'swimming_pool', 'launch', 'spa',
-                  'price', 'site', 'mail', 'phone')
+                  'city', 'category', 'stars', 'wifi', 'parking', 'children_playground', 'swimming_pool', 'launch',
+                  'spa', 'price', 'site', 'mail', 'phone')
         model = models.Advertisement
 
     def __init__(self, *args, **kwargs):
@@ -31,6 +31,7 @@ class AdvertisementForm(forms.ModelForm):
             'county',
             'city',
             'category',
+            'stars',
             'wifi',
             'parking',
             'children_playground',

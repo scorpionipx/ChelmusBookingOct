@@ -56,7 +56,7 @@ class AdvertisementDetailView(generic.DetailView):
         return context
 
 
-class AdvertisementTableView(views.LoginRequiredMixin, SingleTableView):
+class AdvertisementTableView(SingleTableView):
     """
         Class based view for Components' table
     """

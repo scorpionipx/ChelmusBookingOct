@@ -4,6 +4,7 @@
 {% load static %}
 
 {% block content %}
+        <h3><a href="{% url 'advertisements:CreateAdvertisement' %}" class="btn btn-primary" title="Adauga un anunt nou"><span class="glyphicon glyphicon-plus-sign"></span> Adauga un anunt</a></h3>
        <form method='GET' action=''>
         <input  style="width: 113px" type='text' name="n" placeholder="Titlu" value="{{ request.GET.n }}"/>
         <input  style="width: 113px" type='text' name="s" placeholder="Stele" value="{{ request.GET.s }}"/>

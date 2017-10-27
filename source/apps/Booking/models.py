@@ -39,7 +39,7 @@ class Advertisement(models.Model):
                         ('VIL', 'Vila'), ('CAB', 'Cabana'), ('GAR', 'Garsoniera'), ('BIR', 'Birou'),
                         ('SPA', 'Spatiu comercial'), ('ALT', 'Altceva'))
     category = models.CharField(max_length=3, choices=CATEGORY_CHOICES, default=CATEGORY_CHOICES[0],
-                                verbose_name='Categorie', help_text='Tipul anuntului<br><br><h3>Servicii oferite</h3>')
+                                verbose_name='Categorie', help_text='Tipul anuntului')
 
     city = models.CharField(max_length=100, blank=False, null=False, verbose_name='Localitate')
 
@@ -70,8 +70,10 @@ class Advertisement(models.Model):
     mail = models.EmailField(blank=True, verbose_name='Email', help_text='Adresa de email')
     phone = models.CharField(max_length=PHONE_MAX_LENGTH, verbose_name='Telefon',
                              help_text='Numarul de telefon')
-    stars = models.IntegerField(blank=False, default=1, validators=[MaxValueValidator(5), MinValueValidator(1)],
-                                editable=True, verbose_name='Stele')
+    stars = models.IntegerField(blank=False, default=0, validators=[MaxValueValidator(5), MinValueValidator(0)],
+                                editable=True, verbose_name='Stele',
+                                help_text='Daca acest argument nu se aplica anuntului dumneavoastra, utilizati valoarea'
+                                          ' 0!<br><br><h3>Servicii oferite</h3>')
 
     image_0 = models.ImageField(blank=True, null=True, default=None, verbose_name='Imaginea de galerie 1',
                                    upload_to='profiles/%Y/%m/%d')

@@ -1,0 +1,19 @@
+{% extends '_layouts/base.html' %}
+
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block content %}
+       <form method='GET' action=''>
+        <input  style="width: 113px" type='text' name="n" placeholder="Titlu" value="{{ request.GET.n }}"/>
+        <input  style="width: 113px" type='text' name="s" placeholder="Stele" value="{{ request.GET.s }}"/>
+        <input  style="width: 113px" type='text' name="ci" placeholder="Oras" value="{{ request.GET.ci }}"/>
+        <input  style="width: 113px" type='text' name="co" placeholder="Judet" value="{{ request.GET.co }}"/>
+        <input type="submit" value="Filtreaza anunturi" class="btn btn-default btn-sm">
+        <a href="{% url 'advertisements:TableAdvertisement' %}" class="btn btn-default btn-sm">Reseteaza filtrele</a>
+    </form>
+
+    <br>
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+	{% render_table table %}
+{% endblock %}

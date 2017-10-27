@@ -14,6 +14,8 @@ MAIL_CONTENT = 'Salutari! Bun venit in comunitatea Chelmus Booking!'
 class RegistrationForm(UserCreationForm):
 
     email = forms.EmailField(max_length=200, help_text='Required')
+    first_name = forms.CharField(max_length=30, help_text='Required')
+    last_name = forms.CharField(max_length=30, help_text='Required')
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
@@ -22,6 +24,8 @@ class RegistrationForm(UserCreationForm):
         self.helper.layout = Layout(
             'username',
             'email',
+            'first_name',
+            'last_name',
             'password1',
             'password2',
             ButtonHolder(
@@ -32,7 +36,11 @@ class RegistrationForm(UserCreationForm):
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
         user.email = self.cleaned_data["email"]
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data["last_name"]
         if commit:
+            if self.cleaned_data.get('password1', None) == self.cleaned_data.get('password2', None):
+                user.set_password(self.cleaned_data.get('password1', None))
             user.save()
 
         try:
